@@ -1,7 +1,7 @@
 default: build
 
 SHELL:=/bin/bash -eux
-PATTERN := standard-ubuntu-1804
+PATTERN := standard-ubuntu-2204
 
 .PHONY: converge verify test login destroy list
 

@@ -1,12 +1,5 @@
-# ARCHIVED
-
-This project is no longer maintained. For alternative getting started
-experiences, you may want to try one of these options:
-
-- Start a [free trial on Elastic Cloud](https://www.elastic.co/cloud/elasticsearch-service/signup), our hosted service.
-- Take a look at [Elastic Cloud on Kubernetes (ECK)](https://elastic.co/guide/en/cloud-on-k8s/current/k8s-quickstart.html) for launching the stack via Kubernetes.
-- Read our [Running the Elastic Stack on Docker](https://www.elastic.co/guide/en/elastic-stack-get-started/current/get-started-docker.html) guide.
-- Take a look at the [Elastic Stack Terraform provider.](https://github.com/elastic/terraform-provider-elasticstack)
+# setup
+`DOCKER_BUILDKIT=0`
 
 
 # ansible-beats
@@ -87,7 +80,7 @@ This playbook uses [Kitchen](https://kitchen.ci/) for CI and local testing.
 
 ### Running the tests
 
-To converge an Ubuntu 18.04 host
+To converge an Ubuntu 22.04 host
 ```sh
 $ make converge
 ```
