@@ -11,6 +11,7 @@ OS:
   - amazonlinux-2
 TEST_TYPE:
   - standard
+  - standard-7x
   - standard-6x
   - multi
   - config

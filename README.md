@@ -1,6 +1,5 @@
-# setup
-`DOCKER_BUILDKIT=0`
-
+# Project status
+Once an active project, this repository fell to the wayside as its original contributors moved on to other endeavors. Recognizing its latent potential, I've taken on the task of maintaining it in my spare time. My goal is to revive the project, address pending issues, and enhance its capabilities, all the while learning and contributing to the open-source community. The journey is demanding, yet fulfilling, as every small improvement brings new life to this invaluable tool.
 
 # ansible-beats
 [![Build Status](https://img.shields.io/jenkins/s/https/devops-ci.elastic.co/job/elastic+ansible-beats+main.svg)](https://devops-ci.elastic.co/job/elastic+ansible-beats+main/)
