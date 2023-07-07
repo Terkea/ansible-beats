@@ -1,0 +1,35 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ansible
+        sudo apt-get install -y chef
+        gem install bundler
+        bundle install
+
+    - name: Converge
+      run: |
+        bundle exec kitchen converge
+
+    - name: Verify
+      run: |
+        bundle exec kitchen verify
+
+    - name: Destroy
+      run: |
+        bundle exec kitchen destroy
