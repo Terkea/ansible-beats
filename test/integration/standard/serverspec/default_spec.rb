@@ -1,4 +1,4 @@
-require 'spec_helper'
+# require 'spec_helper'
 
 describe 'Standard Tests' do
 
@@ -16,9 +16,9 @@ describe 'Standard Tests' do
   end
 
   describe file('/etc/filebeat/filebeat.yml') do
-    it { should contain 'filebeat:' }
-    it { should contain 'logging:' }
-    it { should contain 'output:' }
+    its('content') { should include 'filebeat:' }
+    its('content') { should include 'logging:' }
+    its('content') { should include 'output:' }
   end
 
   describe file('/etc/init.d/filebeat') do

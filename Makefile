@@ -7,12 +7,11 @@ PATTERN := standard-ubuntu-2204
 
 setup:
 	bundle install
-	docker ps
 
-converge:
+converge: setup
 	bundle exec kitchen converge $(PATTERN)
 
-verify:
+verify: setup
 	bundle exec kitchen verify $(PATTERN)
 
 test:

@@ -1,5 +1,11 @@
 # Changelog
 
+## 8.0.0
+* 8.0.0 as default version
+| PR | Author | Title |
+| --- | --- | --- |
+| [#175](https://github.com/elastic/ansible-beats/pull/175) | [@jmlrt](https://github.com/terkea) | Fixed the existing tests and moved them from docker to vagrant. Support for ubuntu 22.04 and beats 8.\*.\* |
+
 ## 7.17.0
 
 * 7.17.0 as default version.
