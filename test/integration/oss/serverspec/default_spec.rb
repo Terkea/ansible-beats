@@ -1,5 +1,3 @@
-# require 'spec_helper'
-
 describe 'Open Source Tests' do
 
   describe service('filebeat') do

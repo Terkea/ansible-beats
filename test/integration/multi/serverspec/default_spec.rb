@@ -1,5 +1,3 @@
-# require 'spec_helper'
-
 describe 'Multi Tests' do
 
   describe service('filebeat') do

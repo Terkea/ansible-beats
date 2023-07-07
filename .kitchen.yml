@@ -41,7 +41,7 @@ suites:
     attributes:
     verifier:
       inspec_tests: 
-        - test/integration/standard/serverspec/default_spec.rb
+        - test/integration/standard/serverspec/
 
 
 
