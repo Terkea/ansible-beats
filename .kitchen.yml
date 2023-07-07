@@ -14,6 +14,7 @@ provisioner:
   require_ansible_repo: true
   ansible_verbose: true
   idempotency_test: true
+  require_chef_for_busser: false
 
 verifier:
   name: inspec
@@ -41,36 +42,41 @@ suites:
     attributes:
     verifier:
       inspec_tests: 
-        - test/integration/standard/serverspec/
-
-
-
-
-  # - name: standard-6x
-  #   provisioner:
-  #     playbook: test/integration/standard-6x.yml
-  #     additional_copy_path:
-  #       - "."
-  #   run_list:
-  #   attributes:
-  # - name: multi
-  #   provisioner:
-  #     playbook: test/integration/multi.yml
-  #     additional_copy_path:
-  #       - "."
-  #   run_list:
-  #   attributes:
-  # - name: config
-  #   provisioner:
-  #     playbook: test/integration/config.yml
-  #     additional_copy_path:
-  #       - "."
-  #   run_list:
-  #   attributes:
-  # - name: oss
-  #   provisioner:
-  #     playbook: test/integration/oss.yml
-  #     additional_copy_path:
-  #       - "."
-  #   run_list:
-  #   attributes:
+        - test/integration/standard/
+  - name: standard-6x
+    provisioner:
+      playbook: test/integration/standard-6x.yml
+      additional_copy_path:
+        - "."
+    run_list:
+    attributes:
+  - name: multi
+    provisioner:
+      playbook: test/integration/multi.yml
+      additional_copy_path:
+        - "."
+    run_list:
+    attributes:
+    verifier:
+      inspec_tests: 
+        - test/integration/standard-6x/
+  - name: config
+    provisioner:
+      playbook: test/integration/config.yml
+      additional_copy_path:
+        - "."
+    run_list:
+    attributes:
+    verifier:
+      inspec_tests: 
+        - test/integration/config/
+  - name: oss
+    provisioner:
+      playbook: test/integration/oss.yml
+      additional_copy_path:
+        - "."
+    run_list:
+    attributes:
+    verifier:
+      inspec_tests: 
+        - test/integration/oss/

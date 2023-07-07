@@ -20,7 +20,7 @@
           &lt;commitId&gt;, etc.)
     properties:
     - github:
-        url: https://github.com/elastic/ansible-beats/
+        url: https://github.com/terkea/ansible-beats/
     - inject:
         properties-content: HOME=$JENKINS_HOME
     concurrent: true
@@ -32,7 +32,7 @@
         reference-repo: /var/lib/jenkins/.git-references/ansible-beats.git
         branches:
         - ${branch_specifier}
-        url: git@github.com:elastic/ansible-beats.git
+        url: git@github.com:terkea/ansible-beats.git
         basedir: ansible-beats
         wipe-workspace: 'False'
     axes:
