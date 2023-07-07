@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe 'Multi Tests' do
 
   describe service('filebeat') do
@@ -16,9 +14,9 @@ describe 'Multi Tests' do
   end
 
   describe file('/etc/filebeat/filebeat.yml') do
-    it { should contain 'filebeat:' }
-    it { should contain 'logging:' }
-    it { should contain 'output:' }
+    its('content') { should include 'filebeat:' }
+    its('content') { should include 'logging:' }
+    its('content') { should include 'output:' }
   end
 
   describe file('/etc/init.d/filebeat') do
@@ -39,13 +37,13 @@ describe 'Multi Tests' do
   end
 
   describe file('/etc/metricbeat/metricbeat.yml') do
-    it { should contain 'module: system' }
-    it { should contain 'metricsets:' }
-    it { should contain 'period: 10s' }
-    it { should contain 'processes:' }
-    it { should contain 'cpu_ticks:' }
-    it { should contain 'logging:' }
-    it { should contain 'output:' }
+    its('content') { should include 'module: system' }
+    its('content') { should include 'metricsets:' }
+    its('content') { should include 'period: 10s' }
+    its('content') { should include 'processes:' }
+    its('content') { should include 'cpu_ticks:' }
+    its('content') { should include 'logging:' }
+    its('content') { should include 'output:' }
   end
 
   describe file('/etc/init.d/metricbeat') do

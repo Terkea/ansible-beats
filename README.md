@@ -1,17 +1,9 @@
-# ARCHIVED
-
-This project is no longer maintained. For alternative getting started
-experiences, you may want to try one of these options:
-
-- Start a [free trial on Elastic Cloud](https://www.elastic.co/cloud/elasticsearch-service/signup), our hosted service.
-- Take a look at [Elastic Cloud on Kubernetes (ECK)](https://elastic.co/guide/en/cloud-on-k8s/current/k8s-quickstart.html) for launching the stack via Kubernetes.
-- Read our [Running the Elastic Stack on Docker](https://www.elastic.co/guide/en/elastic-stack-get-started/current/get-started-docker.html) guide.
-- Take a look at the [Elastic Stack Terraform provider.](https://github.com/elastic/terraform-provider-elasticstack)
-
+# Project status
+Once an active project, this repository fell to the wayside as its original contributors moved on to other endeavors. Recognizing its latent potential, I've taken on the task of maintaining it in my spare time. My goal is to revive the project, address pending issues, and enhance its capabilities, all the while learning and contributing to the open-source community. The journey is demanding, yet fulfilling, as every small improvement brings new life to this invaluable tool.
 
 # ansible-beats
 [![Build Status](https://img.shields.io/jenkins/s/https/devops-ci.elastic.co/job/elastic+ansible-beats+main.svg)](https://devops-ci.elastic.co/job/elastic+ansible-beats+main/)
-[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-elastic.beats-blue.svg)](https://galaxy.ansible.com/elastic/beats/)
+[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-terkea.beats-blue.svg)](https://galaxy.ansible.com/terkea/beats/)
 
 
 This role provides a generic means of installing Elastic supported Beats
@@ -24,6 +16,7 @@ This role provides a generic means of installing Elastic supported Beats
 
 **Tested Versions**
 
+* 8.x
 * 7.x
 * 6.x
 
@@ -32,6 +25,7 @@ This role provides a generic means of installing Elastic supported Beats
 * Ubuntu 16.04
 * Ubuntu 18.04
 * Ubuntu 20.04
+* Ubuntu 22.04
 * Debian 8
 * Debian 9
 * Debian 10
@@ -43,7 +37,7 @@ This role provides a generic means of installing Elastic supported Beats
 Create your Ansible playbook with your own tasks, and include the role beats. You will have to have this repository accessible within the context of playbook.
 
 ```sh
-ansible-galaxy install elastic.beats,v7.17.0
+ansible-galaxy install terkea.beats
 ```
 
 Then create your playbook yaml adding the role beats.
@@ -54,7 +48,7 @@ The simplest configuration therefore consists of:
 ```yaml
   hosts: localhost
   roles:
-    - role: elastic.beats
+    - role: terkea.beats
   vars:
     beats_version: 7.17.0
     beat: filebeat
@@ -82,12 +76,12 @@ This playbook uses [Kitchen](https://kitchen.ci/) for CI and local testing.
 
 * Ruby
 * Bundler
-* Docker
+* Vagrant
 * Make
 
 ### Running the tests
 
-To converge an Ubuntu 18.04 host
+To converge an Ubuntu 22.04 host
 ```sh
 $ make converge
 ```
@@ -198,7 +192,7 @@ You can override default ILM setup by defining ILM conf as part of *beat_conf*.
 For example:
 
 ```
-- role: ansible-beats
+- role: terkea.beats
   beat: metricbeat
   beat_conf:
     setup:

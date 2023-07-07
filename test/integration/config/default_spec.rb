@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe 'Config Tests' do
 
   describe service('packetbeat') do

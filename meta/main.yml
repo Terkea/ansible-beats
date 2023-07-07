@@ -6,7 +6,7 @@ galaxy_info:
   author: Dale McDiarmid
   description: Beats for Linux
   company: "Elastic.co"
-  issue_tracker_url: https://github.com/elastic/ansible-beats/issues
+  issue_tracker_url: https://github.com/terkea/ansible-beats/issues
   license: "license (Apache)"
   min_ansible_version: 2.5
   platforms:
@@ -26,3 +26,4 @@ galaxy_info:
     - elk
     - logging
     - monitoring
+    - filebeat

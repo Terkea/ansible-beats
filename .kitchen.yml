@@ -1,6 +1,8 @@
 ---
 driver:
-  name: docker
+  name: vagrant
+  ssh:
+    insert_key: false
 
 transport:
   max_ssh_sessions: 6
@@ -12,92 +14,24 @@ provisioner:
   require_ansible_repo: true
   ansible_verbose: true
   idempotency_test: true
+  require_chef_for_busser: false
+
+verifier:
+  name: inspec
+  sudo_path: true
 
 platforms:
   - name: ubuntu-16.04
-    driver_config:
-      image: ubuntu:16.04
-      privileged: true
-      provision_command:
-        - apt-get update && apt-get install -y software-properties-common && add-apt-repository -y ppa:ansible/ansible
-        - apt-get update && apt-get -y -q install ansible python-apt python-pycurl
-      use_sudo: false
   - name: ubuntu-18.04
-    driver_config:
-      image: ubuntu:18.04
-      privileged: true
-      provision_command:
-        - apt-get update && apt-get install -y software-properties-common && add-apt-repository -y ppa:ansible/ansible
-        - apt-get update && apt-get -y -q install ansible python-apt python-pycurl
-        - mkdir -p /run/sshd
-      use_sudo: false
   - name: ubuntu-20.04
-    driver_config:
-      image: ubuntu:20.04
-      privileged: true
-      provision_command:
-        - apt-get update && apt-get install -y software-properties-common && add-apt-repository -y ppa:ansible/ansible
-        - apt-get update && apt-get -y -q install ansible python-apt python-pycurl
-      use_sudo: false
+  - name: ubuntu-22.04
   - name: debian-8
-    driver_config:
-      image: debian:8
-      privileged: true
-      provision_command:
-        - echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main" > /etc/apt/sources.list.d/ansible.list
-        - apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
-        - apt-get update && apt-get -y install ansible
-      use_sudo: false
   - name: debian-9
-    driver_config:
-      image: debian:9
-      privileged: true
-      provision_command:
-        - apt-get update && apt-get -y install gnupg2
-        - echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main" > /etc/apt/sources.list.d/ansible.list
-        - apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
-        - apt-get update && apt-get -y install ansible
-      use_sudo: false
   - name: debian-10
-    driver_config:
-      image: debian:10
-      privileged: true
-      provision_command:
-        - apt-get update && apt-get -y install gnupg2
-        - echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main" > /etc/apt/sources.list.d/ansible.list
-        - apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
-        - apt-get update && apt-get -y install ansible
-      use_sudo: false
   - name: centos-7
-    driver_config:
-      image: centos:7
-      provision_command:
-        - yum -y install epel-release
-        - yum -y install ansible
-      run_command: "/usr/sbin/init"
-      privileged: true
-      use_sudo: false
   - name: centos-8
-    driver_config:
-      image: centos:8
-      provision_command:
-        - yum -y install epel-release
-        - yum -y install ansible
-      run_command: "/usr/sbin/init"
-      privileged: true
-      use_sudo: false
   - name: amazonlinux-2
-    driver_config:
-      image: amazonlinux:2
-      provision_command:
-        - yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-        - yum -y install ansible
-      volume:
-        - <%=ENV['ES_XPACK_LICENSE_FILE']%>:/tmp/license.json
-        - /etc # This fixes certain java file actions that check the mount point. Without this adding users fails for some docker storage drivers
-      run_command: "/usr/sbin/init"
-      privileged: true
-      use_sudo: false
+
 suites:
   - name: standard
     provisioner:
@@ -106,6 +40,19 @@ suites:
         - "."
     run_list:
     attributes:
+    verifier:
+      inspec_tests: 
+        - test/integration/standard/
+  - name: standard-7x
+    provisioner:
+      playbook: test/integration/standard-7x.yml
+      additional_copy_path:
+        - "."
+    run_list:
+    attributes:
+    verifier:
+      inspec_tests: 
+        - test/integration/standard-7x/
   - name: standard-6x
     provisioner:
       playbook: test/integration/standard-6x.yml
@@ -120,6 +67,9 @@ suites:
         - "."
     run_list:
     attributes:
+    verifier:
+      inspec_tests: 
+        - test/integration/standard-6x/
   - name: config
     provisioner:
       playbook: test/integration/config.yml
@@ -127,6 +77,9 @@ suites:
         - "."
     run_list:
     attributes:
+    verifier:
+      inspec_tests: 
+        - test/integration/config/
   - name: oss
     provisioner:
       playbook: test/integration/oss.yml
@@ -134,3 +87,6 @@ suites:
         - "."
     run_list:
     attributes:
+    verifier:
+      inspec_tests: 
+        - test/integration/oss/

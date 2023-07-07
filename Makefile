@@ -1,18 +1,17 @@
 default: build
 
 SHELL:=/bin/bash -eux
-PATTERN := standard-ubuntu-1804
+PATTERN := standard-ubuntu-2204
 
 .PHONY: converge verify test login destroy list
 
 setup:
 	bundle install
-	docker ps
 
-converge:
+converge: setup
 	bundle exec kitchen converge $(PATTERN)
 
-verify:
+verify: setup
 	bundle exec kitchen verify $(PATTERN)
 
 test:
